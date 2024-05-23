@@ -1,25 +1,67 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class TestCases {
     public static void main(String args[]) {
         LifePathCalculator calculator = new LifePathCalculator();
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.println(
+                        "\nPress 1 for viewing test cases and 2 for taking input and output on terminal (-1 to quit program):");
 
-        //////////////////////////// Black Box Testing /////////////////////////////
+                int choice = scanner.nextInt();
+                if (choice == 1) {
+                    // Black Box Testing
+                    // Equivalence Partioning Test Case
+                    EquivalencePartitioning_LifePathNumber(calculator);
+                    EquivalencePartitioning_MasterNumber(calculator);
+                    EquivalencePartitioning_LuckyColour(calculator);
+                    EquivalencePartitioning_Generation(calculator);
+                    EquivalencePartitioning_CheckTwoBirthdays(calculator);
 
-        ///////////////////// Equivalence Partioning Test Case/////////////////////
-        EquivalencePartitioning_LifePathNumber(calculator);
-        EquivalencePartitioning_MasterNumber(calculator);
-        EquivalencePartitioning_LuckyColour(calculator);
-        EquivalencePartitioning_Generation(calculator);
-        EquivalencePartitioning_CheckTwoBirthdays(calculator);
+                    // Boundary Value Test Case
+                    BoundaryValue_LifePathNumber(calculator);
+                    BoundaryValue_LuckyColour(calculator);
+                    BoundaryValue_Generation(calculator);
 
-        ////////////////// Boundary Value Test Case ///////////////////////
-        BoundaryValue_LifePathNumber(calculator);
-        BoundaryValue_LuckyColour(calculator);
-        BoundaryValue_Generation(calculator);
+                    // White Box Testing
+                    WhiteBoxForCheckTwoBirthdays(calculator);
+                    WhiteBoxForLifePathNumber(calculator);
+                } else if (choice == 2) {
+                    System.out.print("Enter date: ");
+                    int date = scanner.nextInt();
+                    System.out.print("Enter month number : ");
+                    int mon = scanner.nextInt();
+                    System.out.print("Enter year: ");
+                    int year = scanner.nextInt();
+                    System.out.print("\nLife path number: " + calculator.LifePathNumber(date, mon, year));
+                    System.out.print(
+                            "\nMaster number: " + calculator.MasterNumber(calculator.LifePathNumber(date, mon, year)));
+                    System.out.print(
+                            "\nLucky colour: " + calculator.LuckyColour(calculator.LifePathNumber(date, mon, year)));
+                    System.out.print("\nGeneration: " + calculator.FindGeneration(date, mon, year));
 
-        ///////////////////////////// White Box Testing//////////////////////
-        WhiteBoxForCheckTwoBirthdays(calculator);
-        WhiteBoxForLifePathNumber(calculator);
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true))) {
+                        writer.write("Date: " + date + ", Month: " + mon + ", Year: " + year + "\n");
+                        writer.write("Life path number: " + calculator.LifePathNumber(date, mon, year) + "\n");
+                        writer.write("Master number: "
+                                + calculator.MasterNumber(calculator.LifePathNumber(date, mon, year)) + "\n");
+                        writer.write("Lucky colour: "
+                                + calculator.LuckyColour(calculator.LifePathNumber(date, mon, year)) + "\n");
+                        writer.write("Generation: " + calculator.FindGeneration(date, mon, year) + "\n\n");
+                        System.out.println("\nStored in output.txt\n");
+                    } catch (IOException e) {
+                        System.out.println("Error writing to file: " + e.getMessage());
+                    }
+                } else if (choice == -1) {
+                    System.exit(0);
+                } else {
+                    System.out.println("\nInvalid Input\n");
+                }
+            }
+        }
 
     }
 
@@ -106,7 +148,7 @@ public class TestCases {
     }
 
     private static void EquivalencePartitioning_MasterNumber(LifePathCalculator calculator) {
-        
+
         System.out.println("\nEquivalence Partitioning for Master Number");
         if (calculator.MasterNumber(11)) {
             System.out.println("Test case EP1 passed.");
@@ -479,11 +521,10 @@ public class TestCases {
         }
     }
 
-   
     private static void WhiteBoxForCheckTwoBirthdays(LifePathCalculator calculator) {
         System.out.println("\nWhiteBox for CheckTwoBirthdays");
         // Year1 is below the valid range
-        
+
         if (calculator.CheckTwoBirthdays(1, 1, 1900, 1, 1, 2000) == -1) {
             System.out.println("Test case WB1 passed.");
         } else {
@@ -497,7 +538,7 @@ public class TestCases {
             System.out.println("Test case WB2 failed.");
         }
 
-        //  Both dates result in the same life path number
+        // Both dates result in the same life path number
         if (calculator.CheckTwoBirthdays(1, 2, 2000, 2, 1, 2000) == 1) {
             System.out.println("Test case WB3 passed.");
         } else {
@@ -521,21 +562,21 @@ public class TestCases {
             System.out.println("Test case WB5 failed.");
         }
 
-        //Year is above the valid range
+        // Year is above the valid range
         if (calculator.LifePathNumber(1, 1, 2025) == -1) {
             System.out.println("Test case WB6 passed.");
         } else {
             System.out.println("Test case WB6 failed.");
         }
 
-        //Date is below the valid range
+        // Date is below the valid range
         if (calculator.LifePathNumber(0, 1, 2000) == -1) {
             System.out.println("Test case WB7 passed.");
         } else {
             System.out.println("Test case WB7 failed.");
         }
 
-        //Date is above the valid range
+        // Date is above the valid range
         if (calculator.LifePathNumber(32, 1, 2000) == -1) {
             System.out.println("Test case WB8 passed.");
         } else {
@@ -556,7 +597,7 @@ public class TestCases {
             System.out.println("Test case WB10 failed.");
         }
 
-        //All inputs are within valid range
+        // All inputs are within valid range
         int result = calculator.LifePathNumber(15, 6, 1990);
         if (result != -1) {
             System.out.println("Test case WB11 passed.");
@@ -565,5 +606,4 @@ public class TestCases {
         }
     }
 
-   
 }

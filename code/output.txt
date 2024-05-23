@@ -1,0 +1,12 @@
+Date: 13, Month: 11, Year: 1987
+Life path number: 22
+Master number: true
+Lucky colour: White
+Generation: Millenials
+
+Date: 12, Month: 4, Year: 1999
+Life path number: 8
+Master number: false
+Lucky colour: Magenta
+Generation: Generation Z
+
