@@ -19,58 +19,58 @@ class code {
     }
 
     public static int LifePathNumber(int date, int month, int year) {
-        int date_lpn = 0;
-        int temp;
-        date_lpn = date_lpn + date % 10;
-        temp = date / 10;
-        date_lpn += temp;
-        System.out.println("Date " + date_lpn);
+        int date_lpn = sumLPN(date);
 
-        int month_lpn = 0;
-        month_lpn = month_lpn + month % 10;
-        temp = month / 10;
-        date_lpn += temp;
-        System.out.println("Month " + month_lpn);
+        int month_lpn = sumLPN(month);
+        
+        int year_lpn = sumLPN(year);
 
-        int year_lpn = 0;
-        year_lpn = year_lpn + year / 1000; 
-        temp = year % 1000; 
-        year_lpn += temp / 100; 
-        temp = temp % 100;
-        year_lpn += temp / 10;
-        temp = temp % 10; 
-        year_lpn += temp;
+        int final_lpn = sumLPN(date_lpn + month_lpn + year_lpn);
+        return (final_lpn);
+    }
+    public static int sumLPN(int num){
+        int lpn = 0;
+        int temp = num;
+        
+        do{
+            lpn=0;
+            while (temp > 0) {
+                lpn += temp % 10;
+                temp /= 10;
+            }
+            temp=lpn;
 
-        System.out.println("Year " + year_lpn);
-        return (date_lpn + month_lpn + year_lpn);
+        }while (temp / 10 > 0);
+        return lpn;
     }
 
     public static int Month(String mon) {
-        if (mon.equals("January")) {
+        if (mon.equalsIgnoreCase("January")) {
             return 1;
-        } else if (mon.equals("February")) {
+        } else if (mon.equalsIgnoreCase("February")) {
             return 2;
-        } else if (mon.equals("March")) {
+        } else if (mon.equalsIgnoreCase("March")) {
             return 3;
-        } else if (mon.equals("April")) {
+        } else if (mon.equalsIgnoreCase("April")) {
             return 4;
-        } else if (mon.equals("May")) {
+        } else if (mon.equalsIgnoreCase("May")) {
             return 5;
-        } else if (mon.equals("June")) {
+        } else if (mon.equalsIgnoreCase("June")) {
             return 6;
-        } else if (mon.equals("July")) {
+        } else if (mon.equalsIgnoreCase("July")) {
             return 7;
-        } else if (mon.equals("August")) {
+        } else if (mon.equalsIgnoreCase("August")) {
             return 8;
-        } else if (mon.equals("September")) {
+        } else if (mon.equalsIgnoreCase("September")) {
             return 9;
-        } else if (mon.equals("October")) {
+        } else if (mon.equalsIgnoreCase("October")) {
             return 10;
-        } else if (mon.equals("November")) {
+        } else if (mon.equalsIgnoreCase("November")) {
             return 11;
-        } else if (mon.equals("December")) {
+        } else if (mon.equalsIgnoreCase("December")) {
             return 12;
         }
         return -1;
     }
+
 }
