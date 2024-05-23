@@ -1,3 +1,5 @@
+import java.net.CacheRequest;
+
 public class TestCases {
     public static void main(String args[]) {
         LifePathCalculator calculator = new LifePathCalculator();
@@ -37,6 +39,10 @@ public class TestCases {
 
         ////////////////// Boundary Value Test Case ///////////////////////
         BoundaryValueTestCases(calculator);
+
+        ///////////////////////////// White Box Testing//////////////////////
+        WhiteBoxForCheckTwoBirthdays(calculator);
+        WhiteBoxForLifePathNumber(calculator);
 
     }
 
@@ -182,15 +188,16 @@ public class TestCases {
                     + actualLifePathNumber);
         }
 
-        // Invalid date 
-        //*** */
+        // Invalid date
+        // *** */
         actualLifePathNumber = calculator.LifePathNumber("00-06-1990");
         expectedLifePathNumber = -1;
         assert expectedLifePathNumber == actualLifePathNumber;
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (00-06-1990) passed");
         } else {
-            System.out.println("Test Case (00-06-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (00-06-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Invalid date
@@ -200,7 +207,8 @@ public class TestCases {
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (33-06-1990) passed");
         } else {
-            System.out.println("Test Case (33-06-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (33-06-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Valid month
@@ -210,18 +218,20 @@ public class TestCases {
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-06-1990) passed");
         } else {
-            System.out.println("Test Case (15-06-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-06-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Invalid month
-        //** */
+        // ** */
         actualLifePathNumber = calculator.LifePathNumber("15-00-1990");
         expectedLifePathNumber = -1;
         assert expectedLifePathNumber == actualLifePathNumber;
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-00-1990) passed");
         } else {
-            System.out.println("Test Case (15-00-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-00-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Invalid month
@@ -231,7 +241,8 @@ public class TestCases {
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-15-1990) passed");
         } else {
-            System.out.println("Test Case (15-15-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-15-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Valid year
@@ -241,7 +252,8 @@ public class TestCases {
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-06-1990) passed");
         } else {
-            System.out.println("Test Case (15-06-1990) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-06-1990) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
         // Invalid year
@@ -251,17 +263,102 @@ public class TestCases {
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-06-1800) passed");
         } else {
-            System.out.println("Test Case (15-06-1800) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-06-1800) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
 
-        // Invalid year 
+        // Invalid year
         actualLifePathNumber = calculator.LifePathNumber("15-06-2080");
         expectedLifePathNumber = -1;
         assert expectedLifePathNumber == actualLifePathNumber;
         if (expectedLifePathNumber == actualLifePathNumber) {
             System.out.println("Test Case (15-06-2080) passed");
         } else {
-            System.out.println("Test Case (15-06-2080) failed: expected " + expectedLifePathNumber + " but got "+ actualLifePathNumber);
+            System.out.println("Test Case (15-06-2080) failed: expected " + expectedLifePathNumber + " but got "
+                    + actualLifePathNumber);
         }
     }
+
+    private static void WhiteBoxForCheckTwoBirthdays(LifePathCalculator calculator) {
+        // Test case 1: Year1 is below the valid range
+        if (calculator.CheckTwoBirthdays(1, 1, 1900, 1, 1, 2000) == -1) {
+            System.out.println("Test case WB1 passed.");
+        } else {
+            System.out.println("Test case WB1 failed.");
+        }
+
+        // Test case 2: Year2 is above the valid range
+        if (calculator.CheckTwoBirthdays(1, 1, 2000, 1, 1, 2025) == -1) {
+            System.out.println("Test case WB2 passed.");
+        } else {
+            System.out.println("Test case WB2 failed.");
+        }
+
+        // Test case 3: Both dates result in the same life path number
+        if (calculator.CheckTwoBirthdays(1, 2, 2000, 2, 1, 2000) == 1) {
+            System.out.println("Test case WB3 passed.");
+        } else {
+            System.out.println("Test case WB3 failed.");
+        }
+
+        // Test case 4: Both dates result in different life path numbers
+        if (calculator.CheckTwoBirthdays(1, 1, 2000, 3, 3, 2000) == 0) {
+            System.out.println("Test case WB4 passed.");
+        } else {
+            System.out.println("Test case WB4 failed.");
+        }
+    }
+
+    private static void WhiteBoxForLifePathNumber(LifePathCalculator calculator) {
+        // Test case 1: Year is below the valid range
+        if (calculator.LifePathNumber(1, 1, 1900) == -1) {
+            System.out.println("Test case WB5 passed.");
+        } else {
+            System.out.println("Test case WB5 failed.");
+        }
+
+        // Test case 2: Year is above the valid range
+        if (calculator.LifePathNumber(1, 1, 2025) == -1) {
+            System.out.println("Test case WB6 passed.");
+        } else {
+            System.out.println("Test case WB6 failed.");
+        }
+
+        // Test case 3: Date is below the valid range
+        if (calculator.LifePathNumber(0, 1, 2000) == -1) {
+            System.out.println("Test case WB7 passed.");
+        } else {
+            System.out.println("Test case WB7 failed.");
+        }
+
+        // Test case 4: Date is above the valid range
+        if (calculator.LifePathNumber(32, 1, 2000) == -1) {
+            System.out.println("Test case WB8 passed.");
+        } else {
+            System.out.println("Test case WB8 failed.");
+        }
+
+        // Test case 5: Month is below the valid range
+        if (calculator.LifePathNumber(1, 0, 2000) == -1) {
+            System.out.println("Test case WB9 passed.");
+        } else {
+            System.out.println("Test case WB9 failed.");
+        }
+
+        // Test case 6: Month is above the valid range
+        if (calculator.LifePathNumber(1, 13, 2000) == -1) {
+            System.out.println("Test case WB10 passed.");
+        } else {
+            System.out.println("Test case WB10 failed.");
+        }
+
+        // Test case 7: All inputs are within valid range
+        int result = calculator.LifePathNumber(15, 6, 1990);
+        if (result != -1) {
+            System.out.println("Test case WB11 passed. Life Path Number: " + result);
+        } else {
+            System.out.println("Test case WB11 failed.");
+        }
+    }
+
 }
