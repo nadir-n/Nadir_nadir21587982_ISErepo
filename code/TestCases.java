@@ -37,22 +37,281 @@ public class TestCases {
         ///////////////////// Equivalence Partioning Test Case/////////////////////
         EquivalencePartioning_LifePathNumber(calculator);
         EquivalencePartioning_MasterNumber(calculator);
+        EquivalencePartioning_LuckyColour(calculator);
+        EquivalencePartitioning_Generation(calculator);
+        EquivalencePartioning_CheckTwoBirthdays(calculator);
 
         ////////////////// Boundary Value Test Case ///////////////////////
-        BoundaryValueTestCases(calculator);
+        BoundaryValue_LifePathNumber(calculator);
         BoundaryValue_MasterNumber(calculator);
+        BoundaryValue_LuckyColour(calculator);
+        BoundaryValue_Generation(calculator);
+        BoundaryValue_CheckTwoBirthdays(calculator);
 
         ///////////////////////////// White Box Testing//////////////////////
         WhiteBoxForCheckTwoBirthdays(calculator);
         WhiteBoxForLifePathNumber(calculator);
 
     }
+    private static void BoundaryValue_CheckTwoBirthdays(LifePathCalculator calculator){
+        System.out.println("\nBoundary Value Test Cases:");
+        // Test Case 5: Testing for lowest valid year for both birthdays
+        if (1 == calculator.CheckTwoBirthdays("01-01-1901", "01-01-1901")) {
+            System.out.println("Test case 5 passed.");
+        } else {
+            System.out.println("Test case 5 failed.");
+        }
+        // Test Case 6: Testing for highest valid year for both birthdays
+        if (0 == calculator.CheckTwoBirthdays("31-12-2024", "31-12-2024")) {
+            System.out.println("Test case 6 passed.");
+        } else {
+            System.out.println("Test case 6 failed.");
+        }
+        // Test Case 7: Testing for invalid year for first birthday
+        if (-1 == calculator.CheckTwoBirthdays("01-01-1900", "01-01-1901")) {
+            System.out.println("Test case 7 passed.");
+        } else {
+            System.out.println("Test case 7 failed.");
+        }
+        // Test Case 8: Testing for invalid year for second birthday
+        if (-1 == calculator.CheckTwoBirthdays("01-01-1901", "01-01-2025")) {
+            System.out.println("Test case 8 passed.");
+        } else {
+            System.out.println("Test case 8 failed.");
+        }
+    }
+    private static void EquivalencePartioning_CheckTwoBirthdays(LifePathCalculator calculator){
+        System.out.println("\nEquivalence Partitioning Test Cases:");
+        // Test Case 1: Testing for same birthdays
+        if (1 == calculator.CheckTwoBirthdays("15-01-2000", "15-01-2000")) {
+            System.out.println("Test case 1 passed.");
+        } else {
+            System.out.println("Test case 1 failed.");
+        }
+        // Test Case 2: Testing for different birthdays
+        if (0 == calculator.CheckTwoBirthdays("15-01-2000", "20-02-1995")) {
+            System.out.println("Test case 2 passed.");
+        } else {
+            System.out.println("Test case 2 failed.");
+        }
+        // Test Case 3: Testing for invalid year of first birthday
+        if (-1 == calculator.CheckTwoBirthdays("15-01-1800", "20-02-1995")) {
+            System.out.println("Test case 3 passed.");
+        } else {
+            System.out.println("Test case 3 failed.");
+        }
+        // Test Case 4: Testing for invalid year of second birthday
+        if (-1 == calculator.CheckTwoBirthdays("15-01-2000", "20-02-2100")) {
+            System.out.println("Test case 4 passed.");
+        } else {
+            System.out.println("Test case 4 failed.");
+        }
+    }
 
-    private static void BoundaryValueTestCases(LifePathCalculator calculator) {
+    private static void BoundaryValue_Generation(LifePathCalculator calculator) {
+        System.out.println("\nBoundary Value Test Cases for Generation Function:");
+        // Test Case 9: Testing for lowest valid year
+        if ("Silent".equals(calculator.FindGeneration("15-01-1901"))) {
+            System.out.println("Test case 9 passed.");
+        } else {
+            System.out.println("Test case 9 failed.");
+        }
+        // Test Case 10: Testing for highest valid year
+        if ("Generation Alpha".equals(calculator.FindGeneration("15-01-2024"))) {
+            System.out.println("Test case 10 passed.");
+        } else {
+            System.out.println("Test case 10 failed.");
+        }
+        // Test Case 11: Testing for invalid year below range
+        if ("".equals(calculator.FindGeneration("15-01-1900"))) {
+            System.out.println("Test case 11 passed.");
+        } else {
+            System.out.println("Test case 11 failed.");
+        }
+        // Test Case 12: Testing for invalid year above range
+        if ("".equals(calculator.FindGeneration("15-01-2025"))) {
+            System.out.println("Test case 12 passed.");
+        } else {
+            System.out.println("Test case 12 failed.");
+        }
+    }
+
+    private static void EquivalencePartitioning_Generation(LifePathCalculator calculator) {
+        // Equivalence Partitioning Test Cases
+        System.out.println("\nEquivalence Partitioning Test Cases for Generation:");
+        // Test Case 1: Testing for Silent Generation
+        if ("Silent".equals(calculator.FindGeneration("15-01-1945"))) {
+            System.out.println("Test case 1 passed.");
+        } else {
+            System.out.println("Test case 1 failed.");
+        }
+        // Test Case 2: Testing for Baby Boomers Generation
+        if ("Baby Boomers".equals(calculator.FindGeneration("15-01-1955"))) {
+            System.out.println("Test case 2 passed.");
+        } else {
+            System.out.println("Test case 2 failed.");
+        }
+        // Test Case 3: Testing for Generation X
+        if ("Generation X".equals(calculator.FindGeneration("15-01-1970"))) {
+            System.out.println("Test case 3 passed.");
+        } else {
+            System.out.println("Test case 3 failed.");
+        }
+        // Test Case 4: Testing for Millenials Generation
+        if ("Millenials".equals(calculator.FindGeneration("15-01-1990"))) {
+            System.out.println("Test case 4 passed.");
+        } else {
+            System.out.println("Test case 4 failed.");
+        }
+        // Test Case 5: Testing for Generation Z
+        if ("Generation Z".equals(calculator.FindGeneration("15-01-2005"))) {
+            System.out.println("Test case 5 passed.");
+        } else {
+            System.out.println("Test case 5 failed.");
+        }
+        // Test Case 6: Testing for Generation Alpha
+        if ("Generation Alpha".equals(calculator.FindGeneration("15-01-2015"))) {
+            System.out.println("Test case 6 passed.");
+        } else {
+            System.out.println("Test case 6 failed.");
+        }
+        // Test Case 7: Testing for year below range
+        if ("".equals(calculator.FindGeneration("15-01-1800"))) {
+            System.out.println("Test case 7 passed.");
+        } else {
+            System.out.println("Test case 7 failed.");
+        }
+        // Test Case 8: Testing for year above range
+        if ("".equals(calculator.FindGeneration("15-01-2030"))) {
+            System.out.println("Test case 8 passed.");
+        } else {
+            System.out.println("Test case 8 failed.");
+        }
+    }
+
+    private static void BoundaryValue_LuckyColour(LifePathCalculator calculator) {
+        // Test case 1: LPN = 1 (Minimum valid LPN)
+        if ("Red".equals(calculator.LuckyColour(1))) {
+            System.out.println("Test case 1 passed.");
+        } else {
+            System.out.println("Test case 1 failed.");
+        }
+
+        // Test case 2: LPN = 5
+        if ("Sky Blue".equals(calculator.LuckyColour(5))) {
+            System.out.println("Test case 2 passed.");
+        } else {
+            System.out.println("Test case 2 failed.");
+        }
+
+        // Test case 3: LPN = 9
+        if ("Gold".equals(calculator.LuckyColour(9))) {
+            System.out.println("Test case 3 passed.");
+        } else {
+            System.out.println("Test case 3 failed.");
+        }
+
+        // Test case 4: LPN = 11
+        if ("Silver".equals(calculator.LuckyColour(11))) {
+            System.out.println("Test case 4 passed.");
+        } else {
+            System.out.println("Test case 4 failed.");
+        }
+
+        // Test case 5: LPN = 22
+        if ("White".equals(calculator.LuckyColour(22))) {
+            System.out.println("Test case 5 passed.");
+        } else {
+            System.out.println("Test case 5 failed.");
+        }
+
+        // Test case 6: LPN = 33 (Maximum valid LPN)
+        if ("Crimson".equals(calculator.LuckyColour(33))) {
+            System.out.println("Test case 6 passed.");
+        } else {
+            System.out.println("Test case 6 failed.");
+        }
+
+        // Test case 7: LPN = 0 (Invalid LPN)
+        if ("".equals(calculator.LuckyColour(0))) {
+            System.out.println("Test case 7 passed.");
+        } else {
+            System.out.println("Test case 7 failed.");
+        }
+
+        // Test case 8: LPN = 34 (Invalid LPN)
+        if ("".equals(calculator.LuckyColour(34))) {
+            System.out.println("Test case 8 passed.");
+        } else {
+            System.out.println("Test case 8 failed.");
+        }
+    }
+
+    private static void EquivalencePartioning_LuckyColour(LifePathCalculator calculator) {
+        // Test case 1: LPN = 1 (Minimum valid LPN)
+        if ("Red".equals(calculator.LuckyColour(1))) {
+            System.out.println("Test case 1 passed.");
+        } else {
+            System.out.println("Test case 1 failed.");
+        }
+
+        // Test case 2: LPN = 5
+        if ("Sky Blue".equals(calculator.LuckyColour(5))) {
+            System.out.println("Test case 2 passed.");
+        } else {
+            System.out.println("Test case 2 failed.");
+        }
+
+        // Test case 3: LPN = 9
+        if ("Gold".equals(calculator.LuckyColour(9))) {
+            System.out.println("Test case 3 passed.");
+        } else {
+            System.out.println("Test case 3 failed.");
+        }
+
+        // Test case 4: LPN = 11
+        if ("Silver".equals(calculator.LuckyColour(11))) {
+            System.out.println("Test case 4 passed.");
+        } else {
+            System.out.println("Test case 4 failed.");
+        }
+
+        // Test case 5: LPN = 22
+        if ("White".equals(calculator.LuckyColour(22))) {
+            System.out.println("Test case 5 passed.");
+        } else {
+            System.out.println("Test case 5 failed.");
+        }
+
+        // Test case 6: LPN = 33 (Maximum valid LPN)
+        if ("Crimson".equals(calculator.LuckyColour(33))) {
+            System.out.println("Test case 6 passed.");
+        } else {
+            System.out.println("Test case 6 failed.");
+        }
+
+        // Test case 7: LPN = 0 (Invalid LPN)
+        if ("".equals(calculator.LuckyColour(0))) {
+            System.out.println("Test case 7 passed.");
+        } else {
+            System.out.println("Test case 7 failed.");
+        }
+
+        // Test case 8: LPN = 34 (Invalid LPN)
+        if ("".equals(calculator.LuckyColour(34))) {
+            System.out.println("Test case 8 passed.");
+        } else {
+            System.out.println("Test case 8 failed.");
+        }
+    }
+
+    private static void BoundaryValue_LifePathNumber(LifePathCalculator calculator) {
         // Boundary Value Test Cases
+
         int expectedLifePathNumber;
 
         // Date boundary tests
+
         int actualLifePathNumber = calculator.LifePathNumber("01-01-1901");
         expectedLifePathNumber = 4;
         assert expectedLifePathNumber == actualLifePathNumber;
@@ -357,7 +616,7 @@ public class TestCases {
         // Test case 7: All inputs are within valid range
         int result = calculator.LifePathNumber(15, 6, 1990);
         if (result != -1) {
-            System.out.println("Test case WB11 passed. Life Path Number: " + result);
+            System.out.println("Test case WB11 passed.");
         } else {
             System.out.println("Test case WB11 failed.");
         }

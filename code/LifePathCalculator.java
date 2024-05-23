@@ -75,7 +75,7 @@ public class LifePathCalculator {
         int date = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
-        String gen = " ";
+        String gen = "";
 
         if (year < 1901 || year > 2024) {
             return gen;
@@ -105,7 +105,7 @@ public class LifePathCalculator {
     }
 
     public String LuckyColour(int lpn) {
-        String colour = " ";
+        String colour = "";
 
         if (lpn < 1 || lpn > 9) {
             if (lpn != 11 && lpn != 22 && lpn != 33) {
