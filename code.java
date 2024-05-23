@@ -27,8 +27,18 @@ class code {
             System.out.println("Lucky Path Number is not a Master Number");
         }
 
-
     }
+    public static boolean CheckTwoBirthdays(int date1,int mon1,int year1,int date2, int mon2, int year2){
+        int LPN1 = LifePathNumber(date1, mon1, year1);
+        int LPN2 = LifePathNumber(date2, mon2, year2);
+        if(LPN1==LPN2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     public static boolean MasterNumber(int lpn){
         if(lpn==11 || lpn==22 || lpn==33)
