@@ -19,8 +19,23 @@ class code {
         String Lucky_Colour = LuckyColour(LPN);
         System.out.println("Lucky Colour: " + Lucky_Colour);
 
+        boolean isMaster = MasterNumber(LPN);
+        if(isMaster){
+            System.out.println("Lucky Path Number is a Master Number");
+        }
+        else{
+            System.out.println("Lucky Path Number is not a Master Number");
+        }
+
+
     }
 
+    public static boolean MasterNumber(int lpn){
+        if(lpn==11 || lpn==22 || lpn==33)
+        return true;
+        else
+        return false;
+    }
     public static String LuckyColour(int lpn) {
         String colour = "";
         if (lpn == 1) {
