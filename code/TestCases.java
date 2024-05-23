@@ -32,19 +32,21 @@ public class TestCases {
         } else {
             System.out.println("Test Case 3(Check if Master) failed");
         }
+        //////////////////////////// Black Box Testing /////////////////////////////
 
         ///////////////////// Equivalence Partioning Test Case/////////////////////
-        EquivalencePartioningTestCases(calculator);
+        EquivalencePartioning_LifePathNumber(calculator);
+        EquivalencePartioning_MasterNumber(calculator);
 
         ////////////////// Boundary Value Test Case ///////////////////////
         BoundaryValueTestCases(calculator);
+        BoundaryValue_MasterNumber(calculator);
 
         ///////////////////////////// White Box Testing//////////////////////
         WhiteBoxForCheckTwoBirthdays(calculator);
         WhiteBoxForLifePathNumber(calculator);
 
     }
-
 
     private static void BoundaryValueTestCases(LifePathCalculator calculator) {
         // Boundary Value Test Cases
@@ -174,7 +176,7 @@ public class TestCases {
         }
     }
 
-    private static void EquivalencePartioningTestCases(LifePathCalculator calculator) {
+    private static void EquivalencePartioning_LifePathNumber(LifePathCalculator calculator) {
         // Equivalence Partioning Test Cases
         // Valid date
         int expectedLifePathNumber;
@@ -359,6 +361,68 @@ public class TestCases {
         } else {
             System.out.println("Test case WB11 failed.");
         }
+    }
+
+    private static void EquivalencePartioning_MasterNumber(LifePathCalculator calculator) {
+        // Test case 1: LPN is a Master Number (valid input)
+        if (calculator.MasterNumber(11)) {
+            System.out.println("Test case EP1 passed.");
+        } else {
+            System.out.println("Test case EP1 failed.");
+        }
+
+        // Test case 2: LPN is not a Master Number (valid input)
+        if (!calculator.MasterNumber(1)) {
+            System.out.println("Test case EP2 passed.");
+        } else {
+            System.out.println("Test case EP2 failed.");
+        }
+
+        // Test case 3: LPN is outside the valid range (Lower Bound)
+        if (!calculator.MasterNumber(0)) {
+            System.out.println("Test case EP3 passed.");
+        } else {
+            System.out.println("Test case EP3 failed.");
+        }
+
+        // Test case 4: LPN is outside the valid range (Upper Bound)
+        if (!calculator.MasterNumber(34)) {
+            System.out.println("Test case EP4 passed.");
+        } else {
+            System.out.println("Test case EP4 failed.");
+        }
+
+    }
+
+    private static void BoundaryValue_MasterNumber(LifePathCalculator calculator) {
+        // Test case 1: LPN is the minimum valid value (11)
+        if (calculator.MasterNumber(11)) {
+            System.out.println("Test case 1 passed.");
+        } else {
+            System.out.println("Test case 1 failed.");
+        }
+
+        // Test case 2: LPN is just below the minimum valid value (10)
+        if (!calculator.MasterNumber(10)) {
+            System.out.println("Test case 2 passed.");
+        } else {
+            System.out.println("Test case 2 failed.");
+        }
+
+        // Test case 3: LPN is the maximum valid value (33)
+        if (calculator.MasterNumber(33)) {
+            System.out.println("Test case 3 passed.");
+        } else {
+            System.out.println("Test case 3 failed.");
+        }
+
+        // Test case 4: LPN is just above the maximum valid value (34)
+        if (!calculator.MasterNumber(34)) {
+            System.out.println("Test case 4 passed.");
+        } else {
+            System.out.println("Test case 4 failed.");
+        }
+
     }
 
 }
