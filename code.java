@@ -1,116 +1,116 @@
-import java.util.*;
+//import java.util.*;
 
 class code {
     public static void main(String args[]) {
+        LifePathCalculator calculator = new LifePathCalculator();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Date: ");
-        int date = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Enter Month: ");
-        String month = sc.nextLine();
-        System.out.println("Enter Year: ");
-        int year = sc.nextInt();
-        sc.close();
-        int mon = Month(month);
-        int LPN = LifePathNumber(date, mon, year);
-        System.out.println("Life Path Number: " + LPN);
+        // Test case 1
+        int expectedLifePathNumber = 22;
+        String expectedLuckyColour = "White";
+        boolean expectedMasterNumber = true;
+        int date = 13;
+        int month = 11;
+        int year = 1987;
+        int actualLifePathNumber1 = calculator.LifePathNumber(date, month, year);
+        assert expectedLifePathNumber == actualLifePathNumber1;
+        String actualLuckyColour = calculator.LuckyColour(expectedLifePathNumber);
+        boolean actualMasterNumber = calculator.MasterNumber(expectedLifePathNumber);
 
-        String Lucky_Colour = LuckyColour(LPN);
-        System.out.println("Lucky Colour: " + Lucky_Colour);
-
-        boolean isMaster = MasterNumber(LPN);
-        if(isMaster){
-            System.out.println("Lucky Path Number is a Master Number");
+        if (expectedLifePathNumber == actualLifePathNumber1) {
+            System.out.println("Test Case 1(Lucky Number) passed");
+        } else {
+            System.out.println("Test Case 1(Lucky Number) failed");
         }
-        else{
-            System.out.println("Lucky Path Number is not a Master Number");
+        //Lucky Colour
+        if (expectedLuckyColour.equals(actualLuckyColour)) {
+            System.out.println("Test Case 2(Lucky Colour) passed");
+        } else {
+            System.out.println("Test Case 2(Lucky Colour) failed");
         }
+        //Master Number
+        if (expectedMasterNumber == actualMasterNumber) {
+            System.out.println("Test Case 3(Check if Master) passed");
+        } else {
+            System.out.println("Test Case 3(Check if Master) failed");
+        }
+      
 
     }
-    public static boolean CheckTwoBirthdays(int date1,int mon1,int year1,int date2, int mon2, int year2){
+
+}
+
+class LifePathCalculator {
+    public boolean CheckTwoBirthdays(int date1, int mon1, int year1, int date2, int mon2, int year2) {
+        
         int LPN1 = LifePathNumber(date1, mon1, year1);
         int LPN2 = LifePathNumber(date2, mon2, year2);
-        if(LPN1==LPN2){
+        if (LPN1 == LPN2) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static String FindGeneration(int year){
-        String gen=" ";
-        if(year>=1901 && year<=1945){
-            gen="Silent";
-        }
-        else if(year>=1946 && year<=1964){
-            gen="Baby Boomers";
-        }
-        else if(year>=1965 && year<=1979){
-            gen="Generation X";
-        }
-        else if(year>=1980 && year<=1994){
-            gen="Millenials";
-        }
-        else if(year>=1994 && year<=2009){
-            gen="Generation Z";
-        }
-        else if(year>=2010 && year<=2024){
-            gen="Generation Alpha";
+    public String FindGeneration(int year) {
+        String gen = " ";
+        if (year >= 1901 && year <= 1945) {
+            gen = "Silent";
+        } else if (year >= 1946 && year <= 1964) {
+            gen = "Baby Boomers";
+        } else if (year >= 1965 && year <= 1979) {
+            gen = "Generation X";
+        } else if (year >= 1980 && year <= 1994) {
+            gen = "Millenials";
+        } else if (year >= 1994 && year <= 2009) {
+            gen = "Generation Z";
+        } else if (year >= 2010 && year <= 2024) {
+            gen = "Generation Alpha";
         }
         return gen;
     }
 
-    public static boolean MasterNumber(int lpn){
-        if(lpn==11 || lpn==22 || lpn==33)
-        return true;
+    public boolean MasterNumber(int lpn) {
+        if (lpn == 11 || lpn == 22 || lpn == 33)
+            return true;
         else
-        return false;
+            return false;
     }
-    public static String LuckyColour(int lpn) {
+
+    public String LuckyColour(int lpn) {
         String colour = "";
         if (lpn == 1) {
             colour = "Red";
-        } 
-        else if (lpn == 2) {
+        } else if (lpn == 2) {
             colour = "Orange";
-        } 
-        else if (lpn == 3) {
+        } else if (lpn == 3) {
             colour = "Yellow";
-        } 
-        else if (lpn==4){
+        } else if (lpn == 4) {
             colour = "Green";
-        }
-        else if (lpn == 5) {
+        } else if (lpn == 5) {
             colour = "Sky Blue";
-        }
-        else if (lpn==6){
-            colour="Indigo";
-        }
-        else if(lpn ==7){
-            colour="Violet";
-        }
-        else if(lpn==8){
-            colour="Magenta";
-        }
-        else if(lpn==9){
-            colour="Gold";
-        }
-        else if(lpn==11){
-            colour="Silver";
-        }
-        else if(lpn==22){
-            colour="White";
-        }
-        else if(lpn==33){
-            colour="Crimson";
+        } else if (lpn == 6) {
+            colour = "Indigo";
+        } else if (lpn == 7) {
+            colour = "Violet";
+        } else if (lpn == 8) {
+            colour = "Magenta";
+        } else if (lpn == 9) {
+            colour = "Gold";
+        } else if (lpn == 11) {
+            colour = "Silver";
+        } else if (lpn == 22) {
+            colour = "White";
+        } else if (lpn == 33) {
+            colour = "Crimson";
         }
         return colour;
 
     }
 
-    public static int LifePathNumber(int date, int month, int year) {
+    public int LifePathNumber(int date, int month, int year) {
+        if(year<1901 || year>2024){
+            return -1;
+        }
         int date_lpn = sumLPN(date);
 
         int month_lpn = sumLPN(month);
@@ -121,7 +121,7 @@ class code {
         return (final_lpn);
     }
 
-    public static int sumLPN(int num) {
+    public int sumLPN(int num) {
         int lpn = 0;
         int temp = num;
 
@@ -141,7 +141,7 @@ class code {
         return lpn;
     }
 
-    public static int Month(String mon) {
+    public int Month(String mon) {
         if (mon.equalsIgnoreCase("January")) {
             return 1;
         } else if (mon.equalsIgnoreCase("February")) {
