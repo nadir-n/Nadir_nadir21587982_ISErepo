@@ -39,6 +39,28 @@ class code {
         }
     }
 
+    public static String FindGeneration(int year){
+        String gen=" ";
+        if(year>=1901 && year<=1945){
+            gen="Silent";
+        }
+        else if(year>=1946 && year<=1964){
+            gen="Baby Boomers";
+        }
+        else if(year>=1965 && year<=1979){
+            gen="Generation X";
+        }
+        else if(year>=1980 && year<=1994){
+            gen="Millenials";
+        }
+        else if(year>=1994 && year<=2009){
+            gen="Generation Z";
+        }
+        else if(year>=2010 && year<=2024){
+            gen="Generation Alpha";
+        }
+        return gen;
+    }
 
     public static boolean MasterNumber(int lpn){
         if(lpn==11 || lpn==22 || lpn==33)
