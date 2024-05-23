@@ -34,12 +34,16 @@ class code {
         
         do{
             lpn=0;
+            if(temp==11 || temp==22 || temp==33){
+                lpn=temp;
+                break;
+            }
             while (temp > 0) {
                 lpn += temp % 10;
                 temp /= 10;
             }
             temp=lpn;
-
+            
         }while (temp / 10 > 0);
         return lpn;
     }
