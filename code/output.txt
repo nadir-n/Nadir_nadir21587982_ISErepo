@@ -10,3 +10,9 @@ Master number: false
 Lucky colour: Magenta
 Generation: Generation Z
 
+Date: 23, Month: 12, Year: 2024
+Life path number: 7
+Master number: false
+Lucky colour: Violet
+Generation: Generation Alpha
+

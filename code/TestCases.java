@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -9,7 +11,7 @@ public class TestCases {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.println(
-                        "\nPress 1 for viewing test cases and 2 for taking input and output on terminal (-1 to quit program):");
+                        "\nPress 1 for viewing test cases\nPress 2 for taking input and output on terminal\nPress 3 for importing data from file (-1 to quit program):");
 
                 int choice = scanner.nextInt();
                 if (choice == 1) {
@@ -55,7 +57,27 @@ public class TestCases {
                     } catch (IOException e) {
                         System.out.println("Error writing to file: " + e.getMessage());
                     }
-                } else if (choice == -1) {
+                }
+                else if (choice==3){
+                    try (BufferedReader br = new BufferedReader(new FileReader("input.txt"))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            String[] parts = line.split("-");
+                            if (parts.length == 3) {
+                                int day = Integer.parseInt(parts[0]);
+                                int month = Integer.parseInt(parts[1]);
+                                int year = Integer.parseInt(parts[2]);
+                                int lifePathNumber = calculator.LifePathNumber(day, month, year);
+                                System.out.println("Date: " + day + "-" + month + "-" + year + ", Life Path Number: " + lifePathNumber);
+                            } else {
+                                System.out.println("Invalid data format: " + line);
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                 else if (choice == -1) {
                     System.exit(0);
                 } else {
                     System.out.println("\nInvalid Input\n");
@@ -68,6 +90,7 @@ public class TestCases {
     private static void EquivalencePartitioning_LifePathNumber(LifePathCalculator calculator) {
 
         System.out.println("\nEquivalence Partitioning Test Cases for LifePathNumber");
+
         // Valid date
         int expectedLifePathNumber;
         int actualLifePathNumber = calculator.LifePathNumber(15, "June", 1990);
