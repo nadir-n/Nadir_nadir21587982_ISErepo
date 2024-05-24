@@ -28,3 +28,9 @@ Master number: true
 Lucky colour: White
 Generation: Millenials
 
+Date: 3, Month: 4, Year: 2024
+Life path number: 6
+Master number: false
+Lucky colour: Indigo
+Generation: Generation Alpha
+
