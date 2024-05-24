@@ -22,3 +22,9 @@ Master number: true
 Lucky colour: Silver
 Generation: Generation Alpha
 
+Date: 13, Month: 11, Year: 1987
+Life path number: 22
+Master number: true
+Lucky colour: White
+Generation: Millenials
+

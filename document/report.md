@@ -118,8 +118,4 @@ The test cases were implemented in the file **TestCases.java** and were executed
 Press 1 to display test case results
 All test cases are passed
 Screenshots are attached below
-![image1](first.png)
-
-
-
 
