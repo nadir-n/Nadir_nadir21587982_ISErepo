@@ -127,6 +127,14 @@ Screenshots are attached below
 ## Traceability Matrix
 ![Description of the image](TestCasesTable.png)
 
+## Version Control
+![alt text](screenshots/1.png)
+![alt text](screenshots/2.png)
+![alt text](screenshots/3.png)
+![alt text](screenshots/4.png)
+![alt text](screenshots/5.png)
+
+## Discussion
 
 
 
