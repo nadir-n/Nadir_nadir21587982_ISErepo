@@ -119,3 +119,28 @@ Press 1 to display test case results
 All test cases are passed
 Screenshots are attached below
 
+![Description of the image](first.png)
+![Description of the image](second.png)
+![Description of the image](third.png)
+![Description of the image](fourth.png)
+
+## Traceability Matrix
+![Description of the image](TestCasesTable.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
