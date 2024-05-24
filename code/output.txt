@@ -16,3 +16,9 @@ Master number: false
 Lucky colour: Violet
 Generation: Generation Alpha
 
+Date: 2, Month: 3, Year: 2022
+Life path number: 11
+Master number: true
+Lucky colour: Silver
+Generation: Generation Alpha
+

@@ -57,18 +57,26 @@ public class TestCases {
                     } catch (IOException e) {
                         System.out.println("Error writing to file: " + e.getMessage());
                     }
-                }
-                else if (choice==3){
+                } else if (choice == 3) {
                     try (BufferedReader br = new BufferedReader(new FileReader("input.txt"))) {
                         String line;
                         while ((line = br.readLine()) != null) {
                             String[] parts = line.split("-");
                             if (parts.length == 3) {
-                                int day = Integer.parseInt(parts[0]);
+                                int date = Integer.parseInt(parts[0]);
                                 int month = Integer.parseInt(parts[1]);
                                 int year = Integer.parseInt(parts[2]);
-                                int lifePathNumber = calculator.LifePathNumber(day, month, year);
-                                System.out.println("Date: " + day + "-" + month + "-" + year + ", Life Path Number: " + lifePathNumber);
+                                int lifePathNumber = calculator.LifePathNumber(date, month, year);
+                                System.out.println("\n\nDate: " + date + "-" + month + "-" + year + "\nLife Path Number: "
+                                        + lifePathNumber);
+                                System.out.print(
+                                        "Master number: "
+                                                + calculator.MasterNumber(calculator.LifePathNumber(date, month, year)));
+                                System.out.print(
+                                        "\nLucky colour: "
+                                                + calculator.LuckyColour(calculator.LifePathNumber(date, month, year)));
+                                System.out.print("\nGeneration: " + calculator.FindGeneration(date, month, year) +"\n");
+
                             } else {
                                 System.out.println("Invalid data format: " + line);
                             }
@@ -76,8 +84,7 @@ public class TestCases {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-                 else if (choice == -1) {
+                } else if (choice == -1) {
                     System.exit(0);
                 } else {
                     System.out.println("\nInvalid Input\n");
