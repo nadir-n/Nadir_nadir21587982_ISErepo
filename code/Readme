@@ -5,4 +5,9 @@ java TestCases
 
 LifePathCalculator.java contains the classes and functions to be used in TestCases.java
 
+input.txt contains Birthdates to be imported into the program
+the first year in that file is last 4 digits of roll no
+
+output.txt is used to store the results and data after processing
+
 
