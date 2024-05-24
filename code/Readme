@@ -1,0 +1,8 @@
+TesCases.java is the main file which has to be executed using commands
+javac TestCases.java
+
+java TestCases
+
+LifePathCalculator.java contains the classes and functions to be used in TestCases.java
+
+
